@@ -12,7 +12,15 @@ namespace Lab5
 
         public Vector2 velocity;
 
+        public Vector2 maxVelocity;
+
         public Vector2 acceleration;
+
+        public Vector2 maxAcceleration;
+
+        public Vector2 force;
+
+        public Vector2 drag;
 
         public string[] asciiMesh { get; protected set; }
     }

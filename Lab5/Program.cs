@@ -18,54 +18,74 @@ namespace Lab5
 
         static void Main(string[] args)
         {
+            int carForce = 5;
+
             Vehicle[] vehicles = new Vehicle[1];
             vehicles[0] = new Car();
-            vehicles[0].acceleration.x = 5;
+            vehicles[0].force.x = carForce;
+            vehicles[0].maxVelocity.x = 10;
+            vehicles[0].maxAcceleration.x = 5;
+            vehicles[0].drag.x = 2;
 
             stopWatch = new System.Diagnostics.Stopwatch();
             stopWatch.Start();
 
+            bSimulating = true;
+
             while (!bQuit)
             {
-                Console.WriteLine("Press 'q' to quit, or press any other keys to start vehicle simulation");
+                Input.InputUpdate();
 
-                ConsoleKeyInfo keyInfo = Console.ReadKey();
-
-                if (keyInfo.Key == ConsoleKey.Q)
+                if (Input.GetKey(InputKey.Q))
                 {
                     bQuit = true;
                 }
 
-                bSimulating = true;
+                //if (Input.GetKey(InputKey.F))
+                //{
+                //    vehicles[0].force.x = carForce;
+                //}
+                //else
+                //{
+                //    vehicles[0].force.x = 0;
+                //}
 
-                while (bSimulating)
+                if (stopWatch.Elapsed.TotalSeconds > 0.33)
                 {
-                    if (stopWatch.Elapsed.TotalSeconds > 0.33)
+                    Console.Clear();
+
+                    Console.WriteLine("Press 'q' to quit, press 'f' to move vehicle");
+
+                    Console.WriteLine(stopWatch.Elapsed.TotalSeconds);
+                    Console.WriteLine(vehicles[0].force.x + " " + vehicles[0].velocity.x);
+
+                    if (bSimulating)
                     {
-                        Console.Clear();
-                        Console.WriteLine(stopWatch.Elapsed.TotalSeconds);
-
                         Physics.Iterate(stopWatch.Elapsed.TotalSeconds, vehicles);
+                    }
 
-                        for (int i = 0; i < vehicles.Length; i++)
+                    for (int i = 0; i < vehicles.Length; i++)
+                    {
+                        if (vehicles[i].position.x >= 65)
                         {
-                            if (vehicles[i].position.x >= 40)
-                            {
-                                bSimulating = false;
-                            }
-
-                            //Rendering with array of ascii lines for each vehicle
-                            for (int n = 0; n < vehicles[i].asciiMesh.Length; n++)
-                            {
-                                int length = vehicles[i].asciiMesh[n].Length;
-                                Console.WriteLine(vehicles[i].asciiMesh[n].PadLeft(length + vehicles[i].position.x));
-                            }
+                            bSimulating = false;
                         }
 
-                        stopWatch.Reset();
-                        stopWatch.Start();
+                        //Rendering with array of ascii lines for each vehicle
+                        for (int n = 0; n < vehicles[i].asciiMesh.Length; n++)
+                        {
+                            int length = vehicles[i].asciiMesh[n].Length;
+                            Console.WriteLine(vehicles[i].asciiMesh[n].PadLeft(length + vehicles[i].position.x));
+                        }
+
+                        Console.WriteLine("-----------------------------------------------------------------------------");
                     }
+
+                    stopWatch.Reset();
+                    stopWatch.Start();
                 }
+
+                Input.InputReset();
             }
         }
     }

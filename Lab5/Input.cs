@@ -10,6 +10,7 @@ namespace Lab5
     {
         Q,
         P,
+        F,
         MAX
     }
 
@@ -19,21 +20,28 @@ namespace Lab5
 
         public static void InputUpdate()
         {
-            ConsoleKeyInfo keyInfo = Console.ReadKey();
-
-            switch (keyInfo.Key)
+            if (Console.KeyAvailable)
             {
-                case ConsoleKey.Q:
-                    inputBuffers[(int)InputKey.Q] = true;
-                    break;
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
-                case ConsoleKey.P:
-                    inputBuffers[(int)InputKey.P] = true;
-                    break;
+                switch (keyInfo.Key)
+                {
+                    case ConsoleKey.Q:
+                        inputBuffers[(int)InputKey.Q] = true;
+                        break;
+
+                    case ConsoleKey.P:
+                        inputBuffers[(int)InputKey.P] = true;
+                        break;
+
+                    case ConsoleKey.F:
+                        inputBuffers[(int)InputKey.F] = true;
+                        break;
+                }
             }
         }
 
-        private static void InputReset()
+        public static void InputReset()
         {
             for (int i = 0; i < inputBuffers.Length; i++)
             {

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lab5
 {
-    class Car : Vehicle
+    class Boat : Vehicle
     {
-        public Car()
+        public Boat()
         {
             position = new Vector2();
             velocity = new Vector2();
@@ -18,10 +18,12 @@ namespace Lab5
             force = new Vector2();
             drag = new Vector2();
 
-            asciiMesh = new string[3];
-            asciiMesh[0] = "   _";
-            asciiMesh[1] = "  /t]___";
-            asciiMesh[2] = " (o_|__o)";
+            asciiMesh = new string[5];
+            asciiMesh[0] = "~  +";
+            asciiMesh[1] = "~ +++";
+            asciiMesh[2] = "~/___]__~~";
+            asciiMesh[3] = "~Q_____/~~";
+            asciiMesh[4] = "~~~~~~~~~~";
         }
     }
 }
