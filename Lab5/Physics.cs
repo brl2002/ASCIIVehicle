@@ -8,7 +8,7 @@ namespace Lab5
 {
     class Physics
     {
-        public void Iterate(double deltaTime, Vehicle[] vehicles)
+        public static void Iterate(double deltaTime, Vehicle[] vehicles)
         {
             for (int i = 0; i < vehicles.Length; i++)
             {
