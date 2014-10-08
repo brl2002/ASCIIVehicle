@@ -23,7 +23,7 @@ namespace Lab5
             if (Console.KeyAvailable)
             {
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-
+                
                 switch (keyInfo.Key)
                 {
                     case ConsoleKey.Q:
