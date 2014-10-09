@@ -16,6 +16,7 @@ namespace Lab5
             acceleration = new Vector2();
             maxAcceleration = new Vector2();
             force = new Vector2();
+            currentForce = new Vector2();
             drag = new Vector2();
 
             asciiMesh = new string[3];
